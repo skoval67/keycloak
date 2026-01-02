@@ -1,0 +1,16 @@
+---
+- name: Check all systems are ready
+  hosts: all
+  gather_facts: false
+  become: false
+  tasks:
+    - name: Wait for system to become reachable
+      ansible.builtin.wait_for_connection:
+
+- name: Setup
+  hosts: auth
+  roles:
+    - local.collection.osupgrade
+    - local.collection.system_hardering
+    - local.collection.docker_install
+    - keycloak

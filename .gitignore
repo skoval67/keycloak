@@ -1,0 +1,8 @@
+.terraform*
+.keys*.tfvars
+.env
+.vscode
+.ansible
+.venv
+yc-iam-token.txt
+.oauth.token

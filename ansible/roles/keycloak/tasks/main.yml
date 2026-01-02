@@ -1,0 +1,29 @@
+---
+# tasks file for keycloak
+- name: Create a directories if they do not exist
+  ansible.builtin.file:
+    path: "{{ work_dir }}/{{ item.path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ item.owner }}"
+  loop: "{{ directories }}"
+
+- name: Copy Yandex Cloud IAM token
+  ansible.builtin.copy:
+    src: yc-iam-token.txt
+    dest: "{{ work_dir }}"
+    mode: "0644"
+
+- name: Copy config files
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ work_dir }}/{{ item.dest }}"
+    mode: '0755'
+  loop:
+    "{{ config_files }}"
+  notify: Restart keyclock
+  tags: ["keycloak"]
+
+- name: Register compose file directory
+  community.docker.docker_compose_v2:
+    project_src: "{{ work_dir }}"

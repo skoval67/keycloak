@@ -1,0 +1,9 @@
+---
+# vars file for keycloak
+work_dir: /opt/keycloak
+directories:
+  - { path: letsencrypt, owner: root }
+  - { path: backups, owner: 34 }
+config_files:
+  - { src: docker-compose.yaml.j2, dest: docker-compose.yaml }
+  - { src: traefik_tls.yml.j2, dest: traefik_tls.yml }

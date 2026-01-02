@@ -1,0 +1,6 @@
+---
+skip_list:
+  - var-naming[no-role-prefix]
+  - var-naming[pattern]
+  - fqcn[action-core]
+  - package-latest

@@ -1,0 +1,5 @@
+- name: Restart keyclock
+  community.docker.docker_compose_v2:
+    project_src: "{{ work_dir }}"
+    state: restarted
+    recreate: always
